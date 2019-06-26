@@ -1,5 +1,7 @@
 const axios = require("axios");
-const User = require('../database/models/User');
+const Profile = require('../database/models/Profile');
+const Order = require('../database/models/Order');
+
 
 module.exports = {
     getHomePage: (req, res) => {
@@ -7,7 +9,7 @@ module.exports = {
     },
     postNewProfile: (req, res) => {
         let newProfile = req.body;
-        Profile.create({ name: newProfile.name, email: newProfile.email, password = newProfile.password })
+        Profile.create({ name: newProfile.name, email: newProfile.email, password: newProfile.password })
             .then(results => {
                 res.send(results.dataValues) //sending to client
             })

@@ -1,7 +1,7 @@
 const { connector, Sequelize } = require('../configuration/dbConfig');
 const Profile = require('../models/Profile');
 
-module.exports = connector.define('order', {
+const Order = connector.define('order', {
     nameClient: Sequelize.STRING,
     nameSo: Sequelize.STRING,
     service: Sequelize.STRING,
@@ -9,7 +9,9 @@ module.exports = connector.define('order', {
     situation: Sequelize.TEXT,
     message: Sequelize.TEXT,
     orderExecuted: { type: Sequelize.BOOLEAN, defaultValue: false }
-})
+});
 
-Profile.hasmany(Order);
+Profile.hasMany(Order);
 Order.belongsTo(Profile);
+
+module.exports = Order;
